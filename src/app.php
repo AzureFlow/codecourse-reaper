@@ -112,11 +112,11 @@ function getCourseInfo(string $courseUrl): array
 		$videoUrl = generateVideoUrl($courseId, $videoId, $videoOrder, $courseSlug, $videoSlug);
 
 		$results['videos'][] = [
-				'videoId' => $videoId,
-				'videoOrder' => $videoOrder,
-				'videoTitle' => $videoTitle,
-				'videoSlug' => $videoSlug,
-				'videoUrl' => $videoUrl,
+			'videoId' => $videoId,
+			'videoOrder' => $videoOrder,
+			'videoTitle' => $videoTitle,
+			'videoSlug' => $videoSlug,
+			'videoUrl' => $videoUrl,
 		];
 	}
 
@@ -177,26 +177,26 @@ function downloadFile(string $url, string $filename): bool
 	$bar->setColorToYellow();
 
 	curl_setopt_array($ch, [
-			CURLOPT_URL => $url,
-			CURLOPT_FILE => $fp,
-			CURLOPT_PROGRESSFUNCTION => static function($resource, $dlTotalBytes, $dlCurrentBytes, $ulTotalBytes, $ulCurrentBytes) use (&$bar) {
-				if($dlTotalBytes === 0)
-				{
-					return 0;
-				}
-
-				if($bar->getSteps() === 0)
-				{
-					$bar->setSteps($dlTotalBytes);
-				}
-
-				$bar->setProgressTo($dlCurrentBytes);
-				$bar->display();
-
+		CURLOPT_URL => $url,
+		CURLOPT_FILE => $fp,
+		CURLOPT_PROGRESSFUNCTION => static function($resource, $dlTotalBytes, $dlCurrentBytes, $ulTotalBytes, $ulCurrentBytes) use (&$bar) {
+			if($dlTotalBytes === 0)
+			{
 				return 0;
-			},
-			CURLOPT_NOPROGRESS => false,
-			CURLOPT_FOLLOWLOCATION => true,
+			}
+
+			if($bar->getSteps() === 0)
+			{
+				$bar->setSteps($dlTotalBytes);
+			}
+
+			$bar->setProgressTo($dlCurrentBytes);
+			$bar->display();
+
+			return 0;
+		},
+		CURLOPT_NOPROGRESS => false,
+		CURLOPT_FOLLOWLOCATION => true,
 //			CURLOPT_TCP_KEEPALIVE => 10,
 //			CURLOPT_TCP_KEEPIDLE => 10,
 	]);
@@ -256,11 +256,11 @@ function urlFilesize(string $url): int
 {
 	$ch = curl_init();
 	curl_setopt_array($ch, [
-			CURLOPT_URL => $url,
-			CURLOPT_NOBODY => true,
+		CURLOPT_URL => $url,
+		CURLOPT_NOBODY => true,
 //			CURLOPT_HEADER => true,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	]);
 
 	$result = curl_exec($ch);
