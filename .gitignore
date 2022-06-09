@@ -1,0 +1,8 @@
+# PHP
+/vendor
+/src/config.php
+
+# Editors
+/.vscode
+/.idea
+/*.iml

@@ -1,0 +1,29 @@
+{
+    "name": "azureflow/codecourse-reaper",
+    "type": "project",
+    "description": "Downloads courses from Codecourse.com",
+    "license": "MIT",
+    "autoload": {
+        "files": [
+            "src/utils.php",
+            "src/config.php"
+        ]
+    },
+    "require": {
+        "php": ">=7.3",
+        "dariuszp/cli-progress-bar": "^1.0",
+		"ext-curl": "*",
+        "ext-json": "*",
+        "ext-dom": "*"
+    },
+    "authors": [
+        {
+            "name": "Kevin",
+            "email": "AzureFlow@protonmail.com"
+        }
+    ],
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}
